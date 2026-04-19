@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZX CODE – El IDE de Escritorio en tu Bolsillo</title>
+  <meta name="description" content="ZX CODE es un editor de código fuente ultra-ligero y de alto rendimiento diseñado para desarrolladores Android. Motor Monaco, terminal integrada, extensiones y mucho más." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════ CURSOR GLOW ═══════════════════════ -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- ═══════════════════════ NAV ═══════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" id="navLogo">
+        <span class="logo-bracket">&lt;</span>ZX<span class="logo-accent">CODE</span><span class="logo-bracket">/&gt;</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#features" class="nav-link">Características</a></li>
+        <li><a href="#advanced" class="nav-link">Avanzado</a></li>
+        <li><a href="#customize" class="nav-link">Personalización</a></li>
+        <li><a href="#specs" class="nav-link">Specs</a></li>
+      </ul>
+      <a href="dist/zxcode-latest.apk" class="btn-nav" id="btnNavDownload">Descargar APK</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════ HERO ═══════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="grid-overlay"></div>
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="particles" id="particles"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge" id="heroBadge">
+          <span class="badge-dot"></span>
+          Monaco Engine · Android IDE
+        </div>
+        <h1 class="hero-title" id="heroTitle">
+          El IDE de Escritorio<br />
+          <span class="gradient-text">en tu Bolsillo</span>
+        </h1>
+        <p class="hero-desc" id="heroDesc">
+          ZX CODE lleva la potencia de VS Code a Android. Motor Monaco, terminal Linux completa, 
+          extensiones reales y sincronización en la nube, todo en 45 MB.
+        </p>
+        <div class="hero-actions" id="heroActions">
+          <a href="dist/zxcode-latest.apk" class="btn-primary" id="btnHeroDownload">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v14M5 9l7 7 7-7"/><path d="M3 20h18"/></svg>
+            Descargar Gratis
+          </a>
+          <a href="#features" class="btn-ghost" id="btnHeroFeatures">
+            Ver Características
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="hero-stats" id="heroStats">
+          <div class="stat-item">
+            <span class="stat-number">100+</span>
+            <span class="stat-label">Lenguajes</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">45MB</span>
+            <span class="stat-label">Tamaño APK</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">Android 7+</span>
+            <span class="stat-label">Compatible</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual" id="heroVisual">
+        <div class="phone-wrapper">
+          <div class="phone-glow"></div>
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="ide-ui">
+                <div class="ide-titlebar">
+                  <span class="ide-dot red"></span>
+                  <span class="ide-dot yellow"></span>
+                  <span class="ide-dot green"></span>
+                  <span class="ide-filename">main.js — ZX CODE</span>
+                </div>
+                <div class="ide-body">
+                  <div class="ide-sidebar">
+                    <div class="sidebar-item active">📁 src</div>
+                    <div class="sidebar-item indent">📄 index.html</div>
+                    <div class="sidebar-item indent active-file">📄 main.js</div>
+                    <div class="sidebar-item indent">📄 styles.css</div>
+                    <div class="sidebar-item">📁 components</div>
+                    <div class="sidebar-item">📄 package.json</div>
+                  </div>
+                  <div class="ide-editor">
+                    <div class="code-line"><span class="ln">1</span><span class="kw">import</span> <span class="id">React</span> <span class="kw">from</span> <span class="str">'react'</span><span class="op">;</span></div>
+                    <div class="code-line"><span class="ln">2</span><span class="kw">import</span> <span class="op">{</span> <span class="id">useState</span> <span class="op">}</span> <span class="kw">from</span> <span class="str">'react'</span><span class="op">;</span></div>
+                    <div class="code-line"><span class="ln">3</span></div>
+                    <div class="code-line"><span class="ln">4</span><span class="kw">const</span> <span class="fn">App</span> <span class="op">=</span> <span class="op">() =&gt;</span> <span class="op">{</span></div>
+                    <div class="code-line"><span class="ln">5</span>  <span class="kw">const</span> <span class="op">[</span><span class="id">data</span><span class="op">,</span> <span class="id">setData</span><span class="op">]</span> <span class="op">=</span></div>
+                    <div class="code-line highlight-line"><span class="ln">6</span>    <span class="fn">useState</span><span class="op">(</span><span class="kw">null</span><span class="op">);</span></div>
+                    <div class="code-line"><span class="ln">7</span></div>
+                    <div class="code-line"><span class="ln">8</span>  <span class="kw">return</span> <span class="op">(</span></div>
+                    <div class="code-line"><span class="ln">9</span>    <span class="tag">&lt;div</span> <span class="attr">className</span><span class="op">=</span><span class="str">"app"</span><span class="tag">&gt;</span></div>
+                    <div class="code-line"><span class="ln">10</span>      <span class="tag">&lt;h1&gt;</span><span class="id">ZX CODE</span><span class="tag">&lt;/h1&gt;</span></div>
+                    <div class="code-line"><span class="ln">11</span>    <span class="tag">&lt;/div&gt;</span></div>
+                    <div class="code-line"><span class="ln">12</span>  <span class="op">);</span></div>
+                    <div class="code-line"><span class="ln">13</span><span class="op">};</span></div>
+                  </div>
+                </div>
+                <div class="ide-terminal">
+                  <span class="term-prompt">~/project</span>
+                  <span class="term-dollar"> $ </span>
+                  <span class="term-cmd">npm run dev</span>
+                  <div class="term-output">▶ Dev server running on <span class="term-url">localhost:3000</span></div>
+                  <div class="term-cursor">█</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" id="scrollIndicator">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ FEATURES ═══════════════════════ -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">🚀 Características Principales</span>
+        <h2 class="section-title">Potencia de Escritorio.<br /><span class="gradient-text">En tu Mano.</span></h2>
+        <p class="section-desc">Todo lo que necesitas para desarrollar software profesional, sin soltar tu Android.</p>
+      </div>
+
+      <div class="features-grid" id="featuresGrid">
+
+        <div class="feature-card feature-card--large" id="featureMonaco">
+          <div class="feature-card-glow"></div>
+          <div class="feature-icon-wrap">
+            <div class="feature-icon">🤖</div>
+          </div>
+          <h3 class="feature-title">Asistente de IA Experto</h3>
+          <p class="feature-desc">Integrado con <strong>Google Gemini 1.5</strong> y <strong>OpenAI (GPT-4)</strong>. Genera código, refactoriza y corrige errores al instante con ayuda de ingeniería de sistemas real.</p>
+          <div class="feature-tags">
+            <span class="tag">Gemini v1</span><span class="tag">GPT-4o</span>
+            <span class="tag">Configuración API Key</span>
+          </div>
+        </div>
+
+        <div class="feature-card" id="featureExtensions">
+          <div class="feature-card-glow"></div>
+          <div class="feature-icon">🧩</div>
+          <h3 class="feature-title">Motor de Plugins Pro</h3>
+          <p class="feature-desc">Crea y comparte tus propias extensiones en JS. Importa scripts externos, actualiza tu lista y potencia el editor a tu gusto.</p>
+        </div>
+
+        <div class="feature-card" id="featureTerminal">
+          <div class="feature-card-glow"></div>
+          <div class="feature-icon">🖥️</div>
+          <h3 class="feature-title">Live Preview Dinámico</h3>
+          <p class="feature-desc">Servidor local NanoHTTPD integrado. Previsualiza cualquier archivo HTML, CSS o JS que estés editando con un solo toque.</p>
+        </div>
+
+        <div class="feature-card" id="featureGit">
+          <div class="feature-card-glow"></div>
+          <div class="feature-icon">📁</div>
+          <h3 class="feature-title">Gestión Profesional</h3>
+          <p class="feature-desc">Editor Monaco (el núcleo de VS Code) optimizado para Android con autocompletado avanzado y múltiples pestañas.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ ADVANCED TABLE ═══════════════════════ -->
+  <section class="advanced" id="advanced">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">🛠️ Funcionalidades Avanzadas</span>
+        <h2 class="section-title">Construido para<br /><span class="gradient-text">Desarrolladores Serios.</span></h2>
+      </div>
+
+      <div class="advanced-grid" id="advancedGrid">
+
+        <div class="adv-card" id="advIntelliSense">
+          <div class="adv-icon">🧠</div>
+          <div class="adv-content">
+            <h4>IntelliSense</h4>
+            <p>Sugerencias de código basadas en tipos de variables, definiciones de funciones y módulos importados. Autocomplete contextual en tiempo real.</p>
+          </div>
+        </div>
+
+        <div class="adv-card" id="advCloud">
+          <div class="adv-icon">🔗</div>
+          <div class="adv-content">
+            <h4>Sincronización en la Nube</h4>
+            <p>Conecta tus cuentas de <strong>GitHub</strong>, <strong>GitLab</strong> o <strong>Bitbucket</strong> para clonar y subir cambios al instante desde el móvil.</p>
+          </div>
+        </div>
+
+        <div class="adv-card" id="advMultiWindow">
+          <div class="adv-icon">⊞</div>
+          <div class="adv-content">
+            <h4>Multi-ventana</h4>
+            <p>Soporte para pantalla dividida. Ve el código en un lado y la terminal o la vista previa en el otro. Ideal para tablets y plegables.</p>
+          </div>
+        </div>
+
+        <div class="adv-card" id="advPreview">
+          <div class="adv-icon">🌐</div>
+          <div class="adv-content">
+            <h4>Preview en Vivo</h4>
+            <p>Servidor local integrado para previsualizar proyectos web (HTML/CSS/JS) en tiempo real mientras editas el código.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Floating terminal demo -->
+      <div class="terminal-demo" id="terminalDemo">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="tdot red"></span>
+            <span class="tdot yellow"></span>
+            <span class="tdot green"></span>
+          </div>
+          <span class="terminal-title">ZX CODE — Terminal</span>
+        </div>
+        <div class="terminal-body" id="terminalBody">
+          <div class="t-line"><span class="t-prompt">zxcode@android</span><span class="t-tilde">:~/project$</span> <span class="t-cmd">git clone https://github.com/user/app</span></div>
+          <div class="t-line t-output">Cloning into 'app'... <span class="t-success">✓ done</span></div>
+          <div class="t-line"><span class="t-prompt">zxcode@android</span><span class="t-tilde">:~/project/app$</span> <span class="t-cmd">npm install</span></div>
+          <div class="t-line t-output">added 847 packages in 12s <span class="t-success">✓</span></div>
+          <div class="t-line"><span class="t-prompt">zxcode@android</span><span class="t-tilde">:~/project/app$</span> <span class="t-cmd">npm run dev</span></div>
+          <div class="t-line t-output">▶ Local: <span class="t-url">http://localhost:5173/</span></div>
+          <div class="t-line"><span class="t-prompt">zxcode@android</span><span class="t-tilde">:~/project/app$</span> <span class="t-cursor">▌</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ CUSTOMIZATION ═══════════════════════ -->
+  <section class="customize" id="customize">
+    <div class="container">
+      <div class="customize-inner">
+        <div class="customize-text">
+          <span class="section-tag">🎨 Personalización</span>
+          <h2 class="section-title">Hecho para<br /><span class="gradient-text">Pantallas Táctiles.</span></h2>
+          <p class="section-desc">ZX CODE entiende que programar en una pantalla táctil es un reto único. Por eso cada detalle está pensado para ti.</p>
+
+          <div class="custom-features">
+            <div class="custom-feat" id="customFeat1">
+              <div class="cf-icon">⌨️</div>
+              <div class="cf-text">
+                <strong>Barra de Teclas Especiales</strong>
+                <p>Fila adicional sobre el teclado con <code>{</code> <code>}</code> <code>[</code> <code>]</code> <code>;</code> <code>/</code> <code>&gt;</code> para programar rápido.</p>
+              </div>
+            </div>
+            <div class="custom-feat" id="customFeat2">
+              <div class="cf-icon">🎨</div>
+              <div class="cf-text">
+                <strong>Temas Visuales</strong>
+                <p>Soporte nativo para <strong>One Dark Pro</strong>, <strong>Dracula</strong> y <strong>Monokai</strong> y cientos más.</p>
+              </div>
+            </div>
+            <div class="custom-feat" id="customFeat3">
+              <div class="cf-icon">🖱️</div>
+              <div class="cf-text">
+                <strong>Modo Escritorio</strong>
+                <p>Interfaz para tablets y plegables, compatible con ratón y teclado físico con atajos como <kbd>Ctrl+P</kbd>, <kbd>Ctrl+Shift+F</kbd>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="themes-showcase" id="themesShowcase">
+          <div class="theme-card active" id="themeOneDark" data-theme="onedark">
+            <div class="theme-preview onedark">
+              <div class="tp-line"><span class="tp-kw">const</span> <span class="tp-fn">app</span> <span class="tp-op">=</span> <span class="tp-str">"ZX CODE"</span><span class="tp-op">;</span></div>
+              <div class="tp-line"><span class="tp-kw">function</span> <span class="tp-fn">init</span><span class="tp-op">()</span> <span class="tp-op">{</span></div>
+              <div class="tp-line tp-indent"><span class="tp-cm">// Monaco Engine</span></div>
+              <div class="tp-line tp-indent"><span class="tp-kw">return</span> <span class="tp-id">app</span><span class="tp-op">;</span></div>
+              <div class="tp-line"><span class="tp-op">}</span></div>
+            </div>
+            <span class="theme-name">One Dark Pro</span>
+          </div>
+          <div class="theme-card" id="themeDracula" data-theme="dracula">
+            <div class="theme-preview dracula">
+              <div class="tp-line"><span class="tp-kw">const</span> <span class="tp-fn">app</span> <span class="tp-op">=</span> <span class="tp-str">"ZX CODE"</span><span class="tp-op">;</span></div>
+              <div class="tp-line"><span class="tp-kw">function</span> <span class="tp-fn">init</span><span class="tp-op">()</span> <span class="tp-op">{</span></div>
+              <div class="tp-line tp-indent"><span class="tp-cm">// Monaco Engine</span></div>
+              <div class="tp-line tp-indent"><span class="tp-kw">return</span> <span class="tp-id">app</span><span class="tp-op">;</span></div>
+              <div class="tp-line"><span class="tp-op">}</span></div>
+            </div>
+            <span class="theme-name">Dracula</span>
+          </div>
+          <div class="theme-card" id="themeMonokai" data-theme="monokai">
+            <div class="theme-preview monokai">
+              <div class="tp-line"><span class="tp-kw">const</span> <span class="tp-fn">app</span> <span class="tp-op">=</span> <span class="tp-str">"ZX CODE"</span><span class="tp-op">;</span></div>
+              <div class="tp-line"><span class="tp-kw">function</span> <span class="tp-fn">init</span><span class="tp-op">()</span> <span class="tp-op">{</span></div>
+              <div class="tp-line tp-indent"><span class="tp-cm">// Monaco Engine</span></div>
+              <div class="tp-line tp-indent"><span class="tp-kw">return</span> <span class="tp-id">app</span><span class="tp-op">;</span></div>
+              <div class="tp-line"><span class="tp-op">}</span></div>
+            </div>
+            <span class="theme-name">Monokai</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ SPECS ═══════════════════════ -->
+  <section class="specs" id="specs">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">📂 Especificaciones Técnicas</span>
+        <h2 class="section-title">Todo lo que<br /><span class="gradient-text">Necesitas Saber.</span></h2>
+      </div>
+
+      <div class="specs-grid" id="specsGrid">
+        <div class="spec-card" id="specPackage">
+          <div class="spec-icon">📦</div>
+          <div class="spec-label">Paquete</div>
+          <div class="spec-value"><code>com.zxcode.android.ide</code></div>
+        </div>
+        <div class="spec-card" id="specOS">
+          <div class="spec-icon">🤖</div>
+          <div class="spec-label">Compatibilidad</div>
+          <div class="spec-value">Android 7.0 <span class="spec-sub">(Nougat) o superior</span></div>
+        </div>
+        <div class="spec-card" id="specSize">
+          <div class="spec-icon">💾</div>
+          <div class="spec-label">Tamaño APK</div>
+          <div class="spec-value">45 MB – 60 MB</div>
+        </div>
+        <div class="spec-card" id="specArch">
+          <div class="spec-icon">⚙️</div>
+          <div class="spec-label">Arquitecturas</div>
+          <div class="spec-value"><code>arm64-v8a</code> · <code>x86_64</code></div>
+        </div>
+      </div>
+
+      <div class="spec-note" id="specNote">
+        <span class="note-icon">💡</span>
+        <div>
+          <strong>Nota Importante:</strong> Para el máximo rendimiento en la terminal y el uso de paquetes como Node.js o Python dentro de ZX CODE, se recomienda otorgar permisos de <em>"Acceso a todos los archivos"</em> y desactivar la optimización de batería para evitar que el sistema cierre procesos en segundo plano mientras compilas.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ DOWNLOAD CTA ═══════════════════════ -->
+  <section class="download" id="download">
+    <div class="download-bg">
+      <div class="download-orb download-orb-1"></div>
+      <div class="download-orb download-orb-2"></div>
+    </div>
+    <div class="container">
+      <div class="download-inner">
+        <div class="download-text">
+          <h2 class="download-title">
+            ¿Listo para Programar<br />
+            <span class="gradient-text">Desde Cualquier Lugar?</span>
+          </h2>
+          <p class="download-desc">Descarga ZX CODE gratis y lleva tu flujo de trabajo de desarrollo contigo. Sin límites. Sin compromisos.</p>
+          <div class="download-actions">
+            <a href="dist/zxcode-latest.apk" class="btn-download" id="btnDownloadMain">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v14M5 9l7 7 7-7"/><path d="M3 20h18"/></svg>
+              <div>
+                <span class="btn-dl-label">Descargar</span>
+                <span class="btn-dl-sub">APK · Android 7+</span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="download-badge-wrap">
+          <div class="apk-badge" id="apkBadge">
+            <div class="apk-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                <line x1="12" y1="18" x2="12" y2="18"/>
+              </svg>
+            </div>
+            <div class="apk-info">
+              <span class="apk-name">ZX CODE.apk</span>
+              <span class="apk-size">~45 MB</span>
+              <div class="apk-compat">
+                <span class="compat-pill">arm64</span>
+                <span class="compat-pill">x86_64</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <span class="logo-bracket">&lt;</span>ZX<span class="logo-accent">CODE</span><span class="logo-bracket">/&gt;</span>
+          </a>
+          <p>El IDE de Escritorio en tu Bolsillo. Motor Monaco · Android.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#features">Características</a>
+          <a href="#advanced">Avanzado</a>
+          <a href="#customize">Personalización</a>
+          <a href="#specs">Specs</a>
+          <a href="#download">Descargar</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ZX CODE. Todos los derechos reservados. · <code>com.zxcode.android.ide</code></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
